@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Weather Graphs</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <style>
+	body { background-color: #30303d; color: #fff; }
+	#chartdiv {
+  	  width: 100%;
+  	  height: 500px;
+	}
+	html *
+	{
+   font-size: 1em;
+   color: #999;
+   font-family: Arial;
+	}
+  </style>
+  <!-- Resources -->
+  <script src="jquery-3.3.1.min.js"></script>
+  <script src="amcharts4/core.js"></script>
+  <script src="amcharts4/charts.js"></script>
+  <script src="amcharts4/themes/dark.js"></script>
+  <script src="amcharts4/themes/animated.js"></script>
+</head>
+
+<body>
+
+<h3>Weather Munich</h3>
+<div id="chartdiv"></div>
+
+<script>
+// Themes begin
+am4core.useTheme(am4themes_dark);
+//am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+
+chart.paddingRight = 20;
+
+
+$.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=48.14%2C11.58&language=de-DE&units=m', function(data){
+    var obj = [];
+    for(var i = 0; i<=48; i++){
+    	var date = new Date(data.vt1hourlyforecast.processTime[i]);
+    	var editedDate = date.getHours();
+    	//alert(editedDate)
+    	obj.push({
+    		time: date, 
+    		perc: data.vt1hourlyforecast.precipPct[i],
+    		temp: data.vt1hourlyforecast.temperature[i]
+    	});
+    }
+    chart.data = obj;
+    console.log('chart data: '+chart.data.time)
+});
+
+/*
+var data =  [{
+        "time": "12:00",
+        "value": 10
+    }, ... 
+    {
+        "time": "15:00",
+        "value": 20
+    }];
+*/
+
+//data.vt1hourlyforecast.temperature[20]
+
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.renderer.grid.template.location = 0;
+dateAxis.renderer.minGridDistance = 30;
+dateAxis.tooltip.disabled = true; 
+dateAxis.baseInterval = {
+  "timeUnit": "hours",
+  "count": 1
+};
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.renderer.minHeight = 100;
+valueAxis.max = 90;
+
+var percSeries = chart.series.push(new am4charts.StepLineSeries());
+percSeries.fillOpacity = 0.2;
+percSeries.dataFields.dateX = "time";
+percSeries.dataFields.valueY = "perc";
+percSeries.strokeWidth = 2;
+percSeries.sequencedInterpolation = true;
+
+var tempSeries = chart.series.push(new am4charts.LineSeries());
+tempSeries.stroke = am4core.color("#e6b800");
+tempSeries.dataFields.dateX = "time";
+tempSeries.dataFields.valueY = "temp";
+tempSeries.noRisers = false;
+tempSeries.strokeWidth = 2;
+tempSeries.sequencedInterpolation = false;
+tempSeries.minHeight = 100;
+tempSeries.tooltipText = "{valueY.value} °C";
+
+
+chart.cursor = new am4charts.XYCursor();
+
+chart.scrollbarX = new am4charts.XYChartScrollbar();
+chart.scrollbarX.series.push(series);
+
+</script>
+
+</body>
+</html>
