@@ -1,1 +1,1 @@
-This PHP Code creates a website with js charts and weather information.
+Run this Repo Dir in a webservers root to get a weather graph of munichs weather.
