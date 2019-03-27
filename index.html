@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Weather Graphs</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <style>
 	body { background-color: #30303d; color: #fff; }
-	#chartdiv {
+	#tempChart {
   	  width: 100%;
-  	  height: 500px;
+  	  height: 400px;
 	}
+  #percChart {
+      width: 100%;
+      height: 400px;
+  }
 	html *
 	{
    font-size: 1em;
@@ -17,7 +20,6 @@
    font-family: Arial;
 	}
   </style>
-  <!-- Resources -->
   <script src="jquery-3.3.1.min.js"></script>
   <script src="amcharts4/core.js"></script>
   <script src="amcharts4/charts.js"></script>
@@ -26,23 +28,23 @@
 </head>
 
 <body>
-
-<h3>Weather Munich</h3>
-<div id="chartdiv"></div>
+ <h3>temperature</h3>
+  <div id="tempChart"></div>
+ <h3>rain percentage</h3>
+  <div id="percChart"></div>
 
 <script>
-// Themes begin
+// use dark theme
 am4core.useTheme(am4themes_dark);
-//am4core.useTheme(am4themes_animated);
-// Themes end
+am4core.useTheme(am4themes_animated);
 
-// Create chart
-var chart = am4core.create("chartdiv", am4charts.XYChart);
-chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+// create charts
+var percChart = am4core.create("percChart", am4charts.XYChart);
+var tempChart = am4core.create("tempChart", am4charts.XYChart);
+percChart.hiddenState.properties.opacity = 0;
+tempChart.hiddenState.properties.opacity = 0;
 
-chart.paddingRight = 20;
-
-
+//get json from weather api and fill array of objects
 $.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=48.14%2C11.58&language=de-DE&units=m', function(data){
     var obj = [];
     for(var i = 0; i<=48; i++){
@@ -50,65 +52,73 @@ $.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197
     	var editedDate = date.getHours();
     	//alert(editedDate)
     	obj.push({
-    		time: date, 
+    		time: date,
     		perc: data.vt1hourlyforecast.precipPct[i],
     		temp: data.vt1hourlyforecast.temperature[i]
     	});
     }
-    chart.data = obj;
-    console.log('chart data: '+chart.data.time)
+    tempChart.data = obj;
+    percChart.data = obj;
 });
 
-/*
-var data =  [{
-        "time": "12:00",
-        "value": 10
-    }, ... 
-    {
-        "time": "15:00",
-        "value": 20
-    }];
-*/
-
-//data.vt1hourlyforecast.temperature[20]
-
-var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-dateAxis.renderer.grid.template.location = 0;
-dateAxis.renderer.minGridDistance = 30;
-dateAxis.tooltip.disabled = true; 
-dateAxis.baseInterval = {
+// temperature chart
+var tempDateAxis = tempChart.xAxes.push(new am4charts.DateAxis());
+tempDateAxis.renderer.grid.template.location = 0;
+tempDateAxis.renderer.minGridDistance = 50;
+tempDateAxis.tooltip.disabled = true;
+tempDateAxis.baseInterval = {
   "timeUnit": "hours",
   "count": 1
 };
 
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.tooltip.disabled = true;
-valueAxis.max = 90;
+var tempValueAxis = tempChart.yAxes.push(new am4charts.ValueAxis());
+tempValueAxis.tooltip.disabled = true;
+tempValueAxis.max = 30;
+tempValueAxis.renderer.minGridDistance = 30;
 
-var percSeries = chart.series.push(new am4charts.StepLineSeries());
+var tempSeries = tempChart.series.push(new am4charts.LineSeries());
+//tempSeries.tensionX = 0.8;
+//tempSeries.tensionY = 1;
+tempSeries.stroke = am4core.color("#ffcc00");
+tempSeries.dataFields.dateX = "time";
+tempSeries.dataFields.valueY = "temp";
+tempSeries.noRisers = false;
+tempSeries.strokeWidth = 2;
+tempSeries.sequencedInterpolation = false;
+tempSeries.minHeight = 35;
+//tempSeries.tooltip.getFillFromObject = false;
+tempSeries.tooltipText = "{valueY.value} °C";
+tempSeries.fillOpacity = .2;
+tempSeries.fill = am4core.color("#ffcc00");
+
+tempChart.cursor = new am4charts.XYCursor();
+
+// percentage chart
+var percDateAxis = percChart.xAxes.push(new am4charts.DateAxis());
+percDateAxis.renderer.grid.template.location = 0;
+percDateAxis.renderer.minGridDistance = 50;
+percDateAxis.tooltip.disabled = true;
+percDateAxis.baseInterval = {
+  "timeUnit": "hours",
+  "count": 1
+};
+
+var percValueAxis = percChart.yAxes.push(new am4charts.ValueAxis());
+percValueAxis.tooltip.disabled = true;
+percValueAxis.max = 90;
+percValueAxis.renderer.minGridDistance = 30;
+
+var percSeries = percChart.series.push(new am4charts.StepLineSeries());
+percSeries.tooltipText = "{valueY.value} %";
 percSeries.fillOpacity = 0.2;
 percSeries.dataFields.dateX = "time";
 percSeries.dataFields.valueY = "perc";
 percSeries.strokeWidth = 2;
 percSeries.sequencedInterpolation = true;
 
-var tempSeries = chart.series.push(new am4charts.LineSeries());
-tempSeries.stroke = am4core.color("#e6b800");
-tempSeries.dataFields.dateX = "time";
-tempSeries.dataFields.valueY = "temp";
-tempSeries.noRisers = false;
-tempSeries.strokeWidth = 2;
-tempSeries.sequencedInterpolation = false;
-tempSeries.minHeight = 100;
-tempSeries.tooltipText = "{valueY.value} °C";
+percChart.cursor = new am4charts.XYCursor();
 
-
-chart.cursor = new am4charts.XYCursor();
-
-chart.scrollbarX = new am4charts.XYChartScrollbar();
-chart.scrollbarX.series.push(series);
 
 </script>
-
 </body>
 </html>
