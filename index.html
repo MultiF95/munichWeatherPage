@@ -20,11 +20,11 @@
    font-family: Arial;
 	}
   </style>
-  <script src="jquery-3.3.1.min.js"></script>
-  <script src="amcharts4/core.js"></script>
-  <script src="amcharts4/charts.js"></script>
-  <script src="amcharts4/themes/dark.js"></script>
-  <script src="amcharts4/themes/animated.js"></script>
+  <script src="src/jquery-3.3.1.min.js"></script>
+  <script src="src/core.js"></script>
+  <script src="src/charts.js"></script>
+  <script src="src/themes/dark.js"></script>
+  <script src="src/themes/animated.js"></script>
 </head>
 
 <body>
@@ -86,11 +86,9 @@ tempSeries.noRisers = false;
 tempSeries.strokeWidth = 2;
 tempSeries.sequencedInterpolation = false;
 tempSeries.minHeight = 35;
-//tempSeries.tooltip.getFillFromObject = false;
 tempSeries.tooltipText = "{valueY.value} °C";
 tempSeries.fillOpacity = .2;
 tempSeries.fill = am4core.color("#ffcc00");
-
 tempChart.cursor = new am4charts.XYCursor();
 
 // percentage chart
@@ -115,7 +113,6 @@ percSeries.dataFields.dateX = "time";
 percSeries.dataFields.valueY = "perc";
 percSeries.strokeWidth = 2;
 percSeries.sequencedInterpolation = true;
-
 percChart.cursor = new am4charts.XYCursor();
 
 
