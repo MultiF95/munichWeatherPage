@@ -16,6 +16,8 @@
 </head>
 
 <body>
+
+
   <div class="header">
     <h1>Weather Graphs</h1>
     <hr>
@@ -24,32 +26,41 @@
       seperated in temperature and rain percentage graphs
     </p>
   </div>
-  <br>
 
-  <div class="outerContainer">
+  <div class="widget">
+    <h3>Next 12 hours</h3>
+    <div class="innerContainer">
+      <div id="tempChart12h"></div>
+    </div>
+    <div class="innerContainer">
+      <div id="percChart12h"></div>
+    </div>
+  </div>
+
+  <div class="widget">
     <h3>Next 48 hours</h3>
-    <br>
     <div class="innerContainer">
-      <div id="tempChart48"></div>
+      <div id="tempChart48h"></div>
     </div>
-    <br>
     <div class="innerContainer">
-      <div id="percChart48"></div>
+      <div id="percChart48h"></div>
     </div>
   </div>
-<br>
-<div class="outerContainer">
-  <h3>Next 10 days</h3>
-  <br>
-  <div class="innerContainer">
-    <div id="tempChart10"></div>
+
+  <div class="widget">
+    <h3>Next 10 days</h3>
+    <div class="innerContainer">
+      <div id="tempChart10d"></div>
+    </div>
+    <div class="innerContainer">
+      <div id="percChart10d"></div>
+    </div>
   </div>
-  <br>
-  <div class="innerContainer">
-    <div id="percChart10"></div>
-  </div>
-</div>
+
 </body>
-<script src="src/charts.js"></script>
+
+<script src="src/chart12h.js"></script>
+<script src="src/chart48h.js"></script>
+<script src="src/chart10d.js"></script>
 
 </html>
