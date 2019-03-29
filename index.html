@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
- <title>Weather Graphs</title>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
- <link rel="stylesheet" type="text/css" href="src/style.css">
- <script src="src/jquery-3.3.1.min.js"></script>
- <script src="src/amcharts4/core.js"></script>
- <script src="src/amcharts4/charts.js"></script>
- <script src="src/amcharts4/themes/dark.js"></script>
- <script src="src/amcharts4/themes/animated.js"></script>
+  <title>Homepage</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Florian Katholing">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="src/jquery-3.3.1.min.js"></script>
+  <script src="src/amcharts4/core.js"></script>
+  <script src="src/amcharts4/charts.js"></script>
+  <script src="src/amcharts4/themes/dark.js"></script>
+  <script src="src/amcharts4/themes/animated.js"></script>
+  <script src="src/moment.js"></script>
 </head>
 
 <body>
- <h3>temperature</h3>
- <div id="tempChart"></div>
- <h3>rain percentage</h3>
- <div id="percChart"></div>
- <script src="src/charts.js"></script>
+  <div class="header">
+    <h1>Weather Graphs</h1>
+    <hr>
+    <p>
+      This website shows the upcoming 48 hours of munichs weather
+      seperated in temperature and rain percentage graphs
+    </p>
+  </div>
+  <br>
+
+  <div class="outerContainer">
+    <h3>Next 48 hours</h3>
+    <br>
+    <div class="innerContainer">
+      <div id="tempChart48"></div>
+    </div>
+    <br>
+    <div class="innerContainer">
+      <div id="percChart48"></div>
+    </div>
+  </div>
+<br>
+<div class="outerContainer">
+  <h3>Next 10 days</h3>
+  <br>
+  <div class="innerContainer">
+    <div id="tempChart10"></div>
+  </div>
+  <br>
+  <div class="innerContainer">
+    <div id="percChart10"></div>
+  </div>
+</div>
 </body>
+<script src="src/charts.js"></script>
 
 </html>
