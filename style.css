@@ -1,4 +1,4 @@
-html {
+body {
   background-color: #111;
   color: white;
   font-family: 'Open Sans', sans-serif;
@@ -35,42 +35,13 @@ html {
     height: 400px;
 }
 
-.center {
-  padding: 10px;
-  margin: auto;
-  width: 90%;
-  text-align: right;
-}
-
-.left{
-  width: 30%;
-}
-.mid{
-  width: 40%;
-}
-.right{
-  width: 30%;
-}
-
-.header {
-  padding: 10px;
-  max-width: 1760px;
-  margin: 20px;
-  background-color: #30303d;
-  text-align: center;
-  border-width: 5px;
-  border-style: solid;
-  border-radius: 20px;
-  border-color: #404040;
-}
-
 .widget {
-  float: left;
-  width: 540px;
   padding: 10px;
+  max-width: 1000px;
   margin: 20px;
+  float: left;
   background-color: #30303d;
-  border-width: 5px;
+  border-width: 3px;
   border-style: solid;
   border-radius: 20px;
   border-color: #404040;
@@ -78,10 +49,41 @@ html {
 }
 
 .innerContainer {
-  padding: 10px;
-  margin: 20px;
+  margin: 5px;
   background-color: #222;
   border-radius: 20px;
   border-color: #0000FF;
   text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    background-color: #222;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+  }
+
+  .widget {
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    float: none;
+    background-color: #30303d;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #404040;
+    text-align: center;
+  }
+
+  .innerContainer {
+    margin: 5px;
+    background-color: #222;
+    border-radius: 20px;
+    border-color: #0000FF;
+    text-align: center;
+  }
 }
