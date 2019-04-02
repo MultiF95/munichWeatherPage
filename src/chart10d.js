@@ -57,6 +57,8 @@ tempSeriesDay.fillOpacity = 0;
 tempSeriesDay.fill = am4core.color("#ff0000");
 
 var tempSeriesNight = tempChart10d.series.push(new am4charts.LineSeries());
+tempSeriesNight.tensionX = 0.8;
+tempSeriesNight.tensionY = 1;
 tempSeriesNight.stroke = am4core.color("#1a75ff");
 tempSeriesNight.dataFields.dateX = "time";
 tempSeriesNight.dataFields.valueY = "tempNight";
@@ -84,7 +86,7 @@ percValueAxis.hide();
 
 var percSeries = percChart10d.series.push(new am4charts.ColumnSeries());
 percSeries.tooltipText = "{valueY.value} %";
-percSeries.fillOpacity = 0.5;
+percSeries.fillOpacity = 0.2;
 percSeries.dataFields.dateX = "time";
 percSeries.dataFields.valueY = "perc";
 percSeries.strokeWidth = 1;

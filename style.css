@@ -47,7 +47,7 @@ body {
 }
 
 .widget {
-  width: 45%;
+  width: 43%;
   padding: 10px;
   margin: 20px;
   float: left;
@@ -80,9 +80,9 @@ body {
   text-align: center;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
   body {
-    background-color: #222;
+    background-color: #000;
     color: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
