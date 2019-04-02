@@ -13,13 +13,14 @@
   <script src="src/amcharts4/charts.js"></script>
   <script src="src/amcharts4/themes/dark.js"></script>
   <script src="src/amcharts4/themes/animated.js"></script>
+  <script src="src/amcharts4/lang/de_DE.js"></script>
   <script src="src/moment.js"></script>
 </head>
 
 <body>
 
 
-  <div class="widget">
+  <div class="topWidget">
     <h1>Weather Graphs</h1>
     <hr>
     <p>
@@ -28,8 +29,9 @@
     </p>
   </div>
 
+<div class="center">
   <div class="widget">
-    <h3>Next 12 hours</h3>
+    <h3>12 hours</h3>
     <div class="innerContainer">
       <div id="tempChart12h"></div>
     </div>
@@ -39,7 +41,7 @@
   </div>
 
   <div class="widget">
-    <h3>Next 48 hours</h3>
+    <h3>48 hours</h3>
     <div class="innerContainer">
       <div id="tempChart48h"></div>
     </div>
@@ -49,7 +51,7 @@
   </div>
 
   <div class="widget">
-    <h3>Next 10 days</h3>
+    <h3>14 days</h3>
     <div class="innerContainer">
       <div id="tempChart10d"></div>
     </div>
@@ -57,6 +59,14 @@
       <div id="percChart10d"></div>
     </div>
   </div>
+
+  <div class="widget">
+    <h3>live</h3>
+      <img class="live" src="https://www.meteo.physik.uni-muenchen.de/DokuWiki/lib/exe/fetch.php?cache=&media=camera.jpg"/>
+  </div>
+
+
+</div>
 
 </body>
 

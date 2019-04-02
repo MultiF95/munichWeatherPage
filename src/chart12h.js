@@ -28,49 +28,32 @@ $.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197
 
 // temperature chart
 var tempDateAxis = tempChart12h.xAxes.push(new am4charts.DateAxis());
-tempDateAxis.renderer.grid.template.location = 0;
-tempDateAxis.renderer.minGridDistance = 80;
-tempDateAxis.tooltip.disabled = true;
-tempDateAxis.baseInterval = {
-  "timeUnit": "hours",
-  "count": 1
-};
+tempDateAxis.renderer.minGridDistance = 25;
+tempDateAxis.dateFormats.setKey("hour", "HH");
 
 var tempValueAxis = tempChart12h.yAxes.push(new am4charts.ValueAxis());
-tempValueAxis.tooltip.disabled = true;
-tempValueAxis.max = 20;
-tempValueAxis.renderer.minGridDistance = 20;
+tempValueAxis.extraMax = 1;
+tempValueAxis.hide();
 
 var tempSeries = tempChart12h.series.push(new am4charts.LineSeries());
-//tempSeries.tensionX = 0.8;
-//tempSeries.tensionY = 1;
 tempSeries.stroke = am4core.color("#ffcc00");
 tempSeries.dataFields.dateX = "time";
 tempSeries.dataFields.valueY = "temp";
-tempSeries.noRisers = false;
 tempSeries.strokeWidth = 2;
-tempSeries.sequencedInterpolation = false;
-tempSeries.minHeight = 20;
-tempSeries.tooltipText = "{valueY.value} °C";
 tempSeries.fillOpacity = .2;
 tempSeries.fill = am4core.color("#ffcc00");
-tempChart12h.cursor = new am4charts.XYCursor();
-
+tempSeries.clickable = false;
 
 // percentage chart
 var percDateAxis = percChart12h.xAxes.push(new am4charts.DateAxis());
-percDateAxis.renderer.grid.template.location = 0;
-percDateAxis.renderer.minGridDistance = 50;
-percDateAxis.tooltip.disabled = true;
-percDateAxis.baseInterval = {
-  "timeUnit": "hours",
-  "count": 1
-};
+percDateAxis.renderer.minGridDistance = 25;
+percDateAxis.dateFormats.setKey("hour", "HH");
 
 var percValueAxis = percChart12h.yAxes.push(new am4charts.ValueAxis());
-percValueAxis.tooltip.disabled = true;
-percValueAxis.max = 90;
-percValueAxis.renderer.minGridDistance = 30;
+percValueAxis.min = 0;
+percValueAxis.max = 100;
+percValueAxis.strictMinMax = true;
+percValueAxis.hide();
 
 var percSeries = percChart12h.series.push(new am4charts.StepLineSeries());
 percSeries.tooltipText = "{valueY.value} %";
@@ -78,5 +61,16 @@ percSeries.fillOpacity = 0.2;
 percSeries.dataFields.dateX = "time";
 percSeries.dataFields.valueY = "perc";
 percSeries.strokeWidth = 2;
-percSeries.sequencedInterpolation = true;
-percChart12h.cursor = new am4charts.XYCursor();
+percSeries.fill = am4core.color("#4ca6ff");
+percSeries.stroke = am4core.color("#4ca6ff");
+percChart12h.clickable = false;
+
+var lbT = tempSeries.bullets.push(new am4charts.LabelBullet());
+lbT.label.text = "{valueY}";
+lbT.label.fill = am4core.color("#ffcc00");
+lbT.padding(-15, 0, 0, 0);
+
+var lBP = percSeries.bullets.push(new am4charts.LabelBullet());
+lBP.label.text = "{valueY}";
+lBP.label.fill = am4core.color("#4ca6ff");
+lBP.padding(-15, 0, 0, 0);
