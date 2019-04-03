@@ -14,7 +14,6 @@ $.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197
   for (var i = 0; i <= 12; i++) {
     var date = new Date(data.vt1hourlyforecast.processTime[i]);
     var editedDate = date.getHours();
-    //alert(editedDate)
     obj.push({
       time: date,
       perc: data.vt1hourlyforecast.precipPct[i],
@@ -61,6 +60,7 @@ percSeries.fillOpacity = 0.2;
 percSeries.dataFields.dateX = "time";
 percSeries.dataFields.valueY = "perc";
 percSeries.strokeWidth = 2;
+percSeries.noRisers = true;
 percSeries.fill = am4core.color("#4ca6ff");
 percSeries.stroke = am4core.color("#4ca6ff");
 percChart12h.clickable = false;

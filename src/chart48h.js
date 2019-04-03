@@ -14,22 +14,21 @@ $.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197
   for (var i = 0; i <= 48; i+=3) {
     var date = new Date(data.vt1hourlyforecast.processTime[i]);
     var editedDate = date.getHours();
-    //alert(editedDate)
     obj.push({
       time: date,
       perc: data.vt1hourlyforecast.precipPct[i],
       temp: data.vt1hourlyforecast.temperature[i]
     });
+
   }
   tempChart48h.data = obj;
   percChart48h.data = obj;
-
 });
 
 // temperature chart 48
 var tempDateAxis = tempChart48h.xAxes.push(new am4charts.DateAxis());
-tempDateAxis.renderer.minGridDistance = 25;
-tempDateAxis.dateFormats.setKey("hour", "HH");
+tempDateAxis.renderer.minGridDistance = 30;
+tempDateAxis.dateFormats.setKey("hour", "hh");
 
 var tempValueAxis = tempChart48h.yAxes.push(new am4charts.ValueAxis());
 tempValueAxis.extraMax = 1;
@@ -47,7 +46,7 @@ tempSeries.clickable = false;
 // percentage chart 48
 var percDateAxis = percChart48h.xAxes.push(new am4charts.DateAxis());
 percDateAxis.renderer.minGridDistance = 25;
-percDateAxis.dateFormats.setKey("hour", "HH");
+percDateAxis.dateFormats.setKey("hour", "hh");
 
 var percValueAxis = percChart48h.yAxes.push(new am4charts.ValueAxis());
 percValueAxis.min = 0;
@@ -61,6 +60,7 @@ percSeries.fillOpacity = 0.2;
 percSeries.dataFields.dateX = "time";
 percSeries.dataFields.valueY = "perc";
 percSeries.strokeWidth = 2;
+percSeries.noRisers = true;
 percSeries.fill = am4core.color("#4ca6ff");
 percSeries.stroke = am4core.color("#4ca6ff");
 percChart12h.clickable = false;
@@ -68,7 +68,7 @@ percChart12h.clickable = false;
 var lbT = tempSeries.bullets.push(new am4charts.LabelBullet());
 lbT.label.text = "{valueY}";
 lbT.label.fill = am4core.color("#ffcc00");
-lbT.padding(-10, 0, 0, 0);
+lbT.padding(-15, 0, 0, 0);
 
 var lBP = percSeries.bullets.push(new am4charts.LabelBullet());
 lBP.label.text = "{valueY}";

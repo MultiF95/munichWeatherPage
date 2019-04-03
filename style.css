@@ -2,7 +2,7 @@ body {
   background-color: #111;
   color: white;
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #tempChart48h {
@@ -35,35 +35,17 @@ body {
     height: 400px;
 }
 
-.center {
-  margin: auto;
-  width: 90%;
-  padding: 10px;
-}
-
 .live{
   height: 100%;
   width: 100%;
 }
 
 .widget {
-  width: 43%;
+  min-width: 150px;
+  max-width: 600px;
   padding: 10px;
   margin: 20px;
   float: left;
-  background-color: #30303d;
-  border-width: 3px;
-  border-style: solid;
-  border-radius: 20px;
-  border-color: #404040;
-  text-align: center;
-}
-
-.topWidget {
-  width: 100%;
-  padding: 10px;
-  margin: auto;
-  float: none;
   background-color: #30303d;
   border-width: 3px;
   border-style: solid;
@@ -80,7 +62,7 @@ body {
   text-align: center;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 900px) {
   #tempChart48h {height: 150px}
   #percChart48h {height: 200px;}
   #tempChart10d {height: 200px;}
@@ -94,13 +76,9 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 10px;
   }
-  .center {
-    margin: auto;
-    width: 100%;
-    padding: 0px;
-  }
-
   .widget {
+    min-width: 150px;
+    max-width: 100%;
     width: auto;
     padding: 3px;
     margin-left: 2px;
@@ -116,18 +94,6 @@ body {
     text-align: center;
   }
 
-  .topWidget {
-    width: 100%;
-    padding: 0px;
-    margin: auto;
-    float: none;
-    background-color: #30303d;
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 20px;
-    border-color: #404040;
-    text-align: center;
-  }
   .innerContainer {
     margin: 2px;
     margin-top: 15px;
