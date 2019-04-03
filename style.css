@@ -41,7 +41,7 @@ body {
 }
 
 .widget {
-  min-width: 150px;
+  min-width: 200px;
   max-width: 600px;
   padding: 10px;
   margin: 20px;
