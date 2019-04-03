@@ -101,7 +101,7 @@ lbTD.label.fill = am4core.color("#ff0000");
 lbTD.padding(-25, 0, 0, 0);
 
 var lbTN = tempSeriesNight.bullets.push(new am4charts.LabelBullet());
-lbTN.label.text = "{valueY}°";
+lbTN.label.text = "{valueY}";
 lbTN.label.fill = am4core.color("#1a75ff");
 lbTN.padding(-25, 0, 0, 0);
 

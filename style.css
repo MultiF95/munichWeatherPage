@@ -81,11 +81,23 @@ body {
 }
 
 @media screen and (max-width: 1200px) {
+  #tempChart48h {height: 150px}
+  #percChart48h {height: 200px;}
+  #tempChart10d {height: 200px;}
+  #percChart10d {height: 200px;}
+  #tempChart12h {height: 150px;}
+  #percChart12h {height: 200px;}
+
   body {
     background-color: #000;
     color: white;
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: 10px;
+  }
+  .center {
+    margin: auto;
+    width: 100%;
+    padding: 0px;
   }
 
   .widget {
@@ -104,6 +116,18 @@ body {
     text-align: center;
   }
 
+  .topWidget {
+    width: 100%;
+    padding: 0px;
+    margin: auto;
+    float: none;
+    background-color: #30303d;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #404040;
+    text-align: center;
+  }
   .innerContainer {
     margin: 2px;
     margin-top: 15px;

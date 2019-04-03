@@ -28,7 +28,7 @@ $.getJSON('https://api.weather.com/v2/turbo/vt1hourlyforecast?apiKey=d522aa97197
 
 // temperature chart
 var tempDateAxis = tempChart12h.xAxes.push(new am4charts.DateAxis());
-tempDateAxis.renderer.minGridDistance = 25;
+tempDateAxis.renderer.minGridDistance = 10;
 tempDateAxis.dateFormats.setKey("hour", "HH");
 
 var tempValueAxis = tempChart12h.yAxes.push(new am4charts.ValueAxis());
@@ -46,7 +46,7 @@ tempSeries.clickable = false;
 
 // percentage chart
 var percDateAxis = percChart12h.xAxes.push(new am4charts.DateAxis());
-percDateAxis.renderer.minGridDistance = 25;
+percDateAxis.renderer.minGridDistance = 10;
 percDateAxis.dateFormats.setKey("hour", "HH");
 
 var percValueAxis = percChart12h.yAxes.push(new am4charts.ValueAxis());
