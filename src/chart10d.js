@@ -108,4 +108,4 @@ lbTN.padding(-25, 0, 0, 0);
 var lbP = percSeries.bullets.push(new am4charts.LabelBullet());
 lbP.label.text = "{valueY}";
 lbP.label.fill = am4core.color("#4ca6ff");
-lbP.padding(-15, 0, 0, 0);
+lbP.padding(-10, 0, 0, 0);

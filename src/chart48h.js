@@ -68,9 +68,9 @@ percChart12h.clickable = false;
 var lbT = tempSeries.bullets.push(new am4charts.LabelBullet());
 lbT.label.text = "{valueY}";
 lbT.label.fill = am4core.color("#ffcc00");
-lbT.padding(-15, 0, 0, 0);
+lbT.padding(-10, 0, 0, 0);
 
 var lBP = percSeries.bullets.push(new am4charts.LabelBullet());
 lBP.label.text = "{valueY}";
 lBP.label.fill = am4core.color("#4ca6ff");
-lBP.padding(-15, 0, 0, 0);
+lBP.padding(-10, 0, 0, 0);
