@@ -97,12 +97,12 @@ percChart10d.clickable = false;
 var lbTD = tempSeriesDay.bullets.push(new am4charts.LabelBullet());
 lbTD.label.text = "{valueY}";
 lbTD.label.fill = am4core.color("#ff0000");
-lbTD.padding(-25, 0, 0, 0);
+lbTD.padding(-15, 0, 0, 0);
 
 var lbTN = tempSeriesNight.bullets.push(new am4charts.LabelBullet());
 lbTN.label.text = "{valueY}";
 lbTN.label.fill = am4core.color("#1a75ff");
-lbTN.padding(-25, 0, 0, 0);
+lbTN.padding(-15, 0, 0, 0);
 
 var lbP = percSeries.bullets.push(new am4charts.LabelBullet());
 lbP.label.text = "{valueY}";
